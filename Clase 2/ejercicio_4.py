@@ -30,14 +30,28 @@ heroes_info = {
     }
 }
 
-lista_heroes = []
+print(heroes_info["Power Girl"])
 
-for heroe in heroes_info:
-    for nombre in heroes_para_reclutar:
-        if (heroe == nombre):
-            heroes_reclutados = {"ID":heroes_info [nombre]["ID"]}
+# for heroe in heroes_para_reclutar:
+#     for info_heroe in heroes_info:
+#         if heroe == info_heroe:
+#             print(heroe)
             
-print(heroes_reclutados)
+    
+
+#print(heroes_info["Super Girl"])
+
+
+# lista_heroes = []
+
+# for heroe in heroes_info:
+#     for nombre in heroes_para_reclutar:
+#         if (heroe == nombre):
+#             heroes_reclutados = {}#"ID":heroes_info [nombre]["ID"]},#["Habilidades"]}
             
+#             heroes_reclutados["ID"] = heroes_info ["Shazam"]["ID"] 
+#             heroes_reclutados[heroe] = nombre["Shazam"]
+#             heroes_reclutados
+#             heroes_reclutados["habilidades"] = heroes_info ["Shazam"]["Habilidades"]
             
-        
+# print("ID: ",her)
