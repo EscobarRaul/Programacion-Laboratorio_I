@@ -25,13 +25,12 @@ habilidades = [
     }
 ]
 
-habilidades_utn = []
 dic_habilidades = {}
-for habilidad in habilidades:
-    hab_utn = []
-    for dato in habilidad:
-        hab_utn.append(habilidad[dato])
-        
-    
+habilidades_utn = []
 
-print(hab_utn)
+for habilidad in habilidades:
+    habilidades_utn=[]
+    for dato in habilidad:
+        habilidades_utn.append(habilidad[dato])
+        
+    print(habilidades_utn)
