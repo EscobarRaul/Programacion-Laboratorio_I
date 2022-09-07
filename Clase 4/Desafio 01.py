@@ -17,6 +17,22 @@ lista_personajes =
 """
 from data_stark import lista_personajes
 
+def buscar_primer_femenino():
+        heroe_femenino = {}
+        for heroe in lista_personajes:
+            if heroe["genero"] == "F":
+                heroe_femenino = heroe
+                break
+        return heroe_femenino
+
+def buscar_primer_masculino():
+        heroe_masculino = {}
+        for heroe in lista_personajes:
+            if heroe["genero"] == "M":
+                heroe_masculino = heroe
+                break
+        return heroe_masculino
+
 #-----------A)NOMBRES MASCULINOS-------------
 def imprimir_nombre_masculino():
     for heroe in lista_personajes :
@@ -31,14 +47,6 @@ def imprimir_nombre_femenino():
 
 #------------C) HEROE MAS ALTO MASCULINO-----------
 def calcular_heroe_mas_alto_masculino():
-    def buscar_primer_masculino():
-        heroe_masculino = {}
-        for heroe in lista_personajes:
-            if heroe["genero"] == "M":
-                heroe_masculino = heroe
-                break
-        return heroe_masculino
-
     heroe_mas_alto = buscar_primer_masculino()
     heroe_mas_alto["altura"] = float(heroe_mas_alto["altura"])
     for heroe in lista_personajes:
@@ -50,14 +58,6 @@ def calcular_heroe_mas_alto_masculino():
 
 #-----------------D)HEROE MAS ALTO FEMENINO----------------
 def calcular_heroe_mas_alto_femenino():
-    def buscar_primer_femenino():
-        heroe_femenino = {}
-        for heroe in lista_personajes:
-            if heroe["genero"] == "F":
-                heroe_femenino = heroe
-                break
-        return heroe_femenino
-
     heroe_mas_alto = buscar_primer_femenino()
     heroe_mas_alto["altura"] = float(heroe_mas_alto["altura"])
     for heroe in lista_personajes:
@@ -116,49 +116,97 @@ def calcular_promedio_altura_femenino():
 
 #------------J) CANTIDAD DE TIPOS DE COLOR DE OJOS ---------------
 def cantidad_tipos_color_ojos():
-    #{color ojos : color , contador : 1}
-    lista_color_ojos = [{"color": lista_personajes[0]["color_ojos"],"cantidad":0}]
+    dict_ojos = {}
     for heroe in lista_personajes:
-        dic_color_ojos = {}
-        flag = False
-        for ojos in lista_color_ojos:
-            if(heroe["color_ojos"] == ojos["color"]):
-                ojos["cantidad"] += 1
-                flag = True
-
-        if (flag == False):
-            dic_color_ojos = {"color":heroe["color_ojos"], "cantidad":1}
-            lista_color_ojos.append(dic_color_ojos)
-
-    print(lista_color_ojos)
+        color = heroe["color_ojos"]
+        if color not in dict_ojos:
+            dict_ojos[color]= 1
+        else:
+            dict_ojos[color] += 1
+    for color in dict_ojos:
+        print("Color: {0} | Cantidad: {1}".format(color, dict_ojos[color]))
+    
 
 #------------K) CANTIDAD DE TIPOS DE COLOR DE PELO ------------------
 def cantidad_tipos_color_pelo():
-    lista_color_pelo = [{"color": lista_personajes[0]["color_pelo"],"cantidad":0}]
+    dict_pelo = {}
     for heroe in lista_personajes:
-        dic_color_pelo = {}
-        flag = False
-        for pelo in lista_color_pelo:
-            if(heroe["color_pelo"] == pelo["color"]):
-                pelo["cantidad"] += 1
-                flag = True
-
-        if (flag == False):
-            dic_color_pelo = {"color":heroe["color_pelo"], "cantidad":1}
-            lista_color_pelo.append(dic_color_pelo)
-
-    print(lista_color_pelo)
-
-#--------------L) CANTIDAD 
+        color = heroe["color_pelo"]
+        if color not in dict_pelo:
+            dict_pelo[color]= 1
+        else:
+            dict_pelo[color] += 1
+    for color in dict_pelo:
+        print("Color: {0} | Cantidad: {1}".format(color, dict_pelo[color]))
 
 
+#--------------L) CANTIDAD DE TIPOS DE INTELIGENCIA -----------
+def cantidad_tipos_inteligencia():
+    dict_inteligencia = {}
+    for heroe in lista_personajes:
+        tipo = heroe["inteligencia"]
+        if tipo not in dict_inteligencia:
+            dict_inteligencia[tipo]= 1
+        else:
+            dict_inteligencia[tipo] += 1
+    for tipo in dict_inteligencia:
+        print("Tipo: {0} | Cantidad: {1}".format(tipo, dict_inteligencia[tipo]))
+
+#---------------M) LISTA COLOR DE OJOS CON HEROE--------------
+def listar_heroes_color_ojos():
+    dict_ojos_nombres = {}
+    for heroe in lista_personajes:
+        color = heroe["color_ojos"]
+        if color not in dict_ojos_nombres.keys():
+            nombres = []
+            nombres.append(heroe["nombre"])
+            dict_ojos_nombres[color]= nombres
+        else:
+            dict_ojos_nombres[color].append(heroe["nombre"])
+
+    for color in dict_ojos_nombres:
+        mensaje = " | ".join(dict_ojos_nombres[color])
+        print("Color de ojos: {0} - Heroe: {1}".format(color, mensaje))
+
+#----------------N) LISTA COLOR DE PELO CON SU HEREO ----------------
+def listar_heroes_color_pelo():
+    dict_pelo_nombres = {}
+    for heroe in lista_personajes:
+        color = heroe["color_pelo"]
+        if color not in dict_pelo_nombres.keys():
+            nombres = []
+            nombres.append(heroe["nombre"])
+            dict_pelo_nombres[color]= nombres
+        else:
+            dict_pelo_nombres[color].append(heroe["nombre"])
+
+    for color in dict_pelo_nombres:
+        mensaje = " | ".join(dict_pelo_nombres[color])
+        print("Color de pelo: {0} - Heroes: {1}".format(color, mensaje))
+
+#-------------O) LISTA SEGUN TIPO DE INTELIGENCIA---------------
+def listar_heroes_tipo_inteligencia():
+    dict_int_nombres = {}
+    for heroe in lista_personajes:
+        tipo = heroe["inteligencia"]
+        if tipo not in dict_int_nombres.keys():
+            nombres = []
+            nombres.append(heroe["nombre"])
+            dict_int_nombres[tipo]= nombres
+        else:
+            dict_int_nombres[tipo].append(heroe["nombre"])
+
+    for tipo in dict_int_nombres:
+        mensaje = " | ".join(dict_int_nombres[tipo])
+        print("Tipo de inteligencia: {0} - Heroes: {1}".format(tipo, mensaje))
 
 #------------------------MENU-------------------------   
 while True:
   respuesta = input("1) Nombre de heroes masculinos:\n2)Nombre de heroes femeninos:\n3)Heroe masculino mas alto:\n"
                     "4)Heroe femenino mas alto:\n5)Heroe masculino mas bajo:\n6)Heroe femenino mas bajo:\n"
                     "7)Promedio de altura masculino:\n8) Promedio de altura femenino:\n9) Cantidad de tipos de color de ojos:\n"
-                    "10)Cantidad de tipos de color de pelo:\n")
+                    "10)Cantidad de tipos de color de pelo:\n11)Cantidad de tipos de inteligencia:\n12)Heroes segun su color de ojos:\n"
+                    "13)Heroes segun su color de pelo:\n14)Heroes segun su tipo de inteligencia:\n15) Salir.")
   if(respuesta == "1"):
     imprimir_nombre_masculino()
   elif(respuesta == "2"):
@@ -180,4 +228,12 @@ while True:
   elif(respuesta == "10"):
     cantidad_tipos_color_pelo()
   elif(respuesta == "11"):
-      break
+    cantidad_tipos_inteligencia()
+  elif(respuesta == "12"):
+    listar_heroes_color_ojos()
+  elif(respuesta == "13"):
+    listar_heroes_color_pelo()
+  elif(respuesta == "14"):
+    listar_heroes_tipo_inteligencia()
+  elif(respuesta == "15"):
+    break
