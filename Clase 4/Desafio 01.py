@@ -146,9 +146,16 @@ def cantidad_tipos_inteligencia():
     for heroe in lista_personajes:
         tipo = heroe["inteligencia"]
         if tipo not in dict_inteligencia:
-            dict_inteligencia[tipo]= 1
+            if tipo == "":
+                dict_inteligencia["No tiene"]= 1
+            else:
+                dict_inteligencia[tipo] = 1
         else:
-            dict_inteligencia[tipo] += 1
+            if tipo == "":
+                dict_inteligencia["No tiene"]= 1
+            else:
+                dict_inteligencia[tipo] += 1
+                
     for tipo in dict_inteligencia:
         print("Tipo: {0} | Cantidad: {1}".format(tipo, dict_inteligencia[tipo]))
 
