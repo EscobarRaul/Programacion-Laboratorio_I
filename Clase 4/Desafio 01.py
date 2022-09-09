@@ -146,9 +146,16 @@ def cantidad_tipos_inteligencia():
     for heroe in lista_personajes:
         tipo = heroe["inteligencia"]
         if tipo not in dict_inteligencia:
-            dict_inteligencia[tipo]= 1
+            if tipo == "":
+                dict_inteligencia["No tiene"]= 1
+            else:
+                dict_inteligencia[tipo]= 1
         else:
-            dict_inteligencia[tipo] += 1
+            if tipo == "":
+                dict_inteligencia["No tiene"] += 1
+            else:
+                dict_inteligencia[tipo] += 1
+            
     for tipo in dict_inteligencia:
         print("Tipo: {0} | Cantidad: {1}".format(tipo, dict_inteligencia[tipo]))
 
@@ -206,7 +213,7 @@ while True:
                     "4)Heroe femenino mas alto:\n5)Heroe masculino mas bajo:\n6)Heroe femenino mas bajo:\n"
                     "7)Promedio de altura masculino:\n8) Promedio de altura femenino:\n9) Cantidad de tipos de color de ojos:\n"
                     "10)Cantidad de tipos de color de pelo:\n11)Cantidad de tipos de inteligencia:\n12)Heroes segun su color de ojos:\n"
-                    "13)Heroes segun su color de pelo:\n14)Heroes segun su tipo de inteligencia:\n15) Salir.")
+                    "13)Heroes segun su color de pelo:\n14)Heroes segun su tipo de inteligencia:\n15) Salir.\n")
   if(respuesta == "1"):
     imprimir_nombre_masculino()
   elif(respuesta == "2"):
