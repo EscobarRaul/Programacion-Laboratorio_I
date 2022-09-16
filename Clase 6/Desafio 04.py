@@ -1,6 +1,7 @@
 from data_stark import lista_personajes
 import re
 
+#-----------------1.1--------------------------
 def extraer_iniciales(nombre_heroe:str)-> str:
     
     if len(nombre_heroe) > 0:
@@ -53,12 +54,13 @@ def extraer_iniciales(nombre_heroe:str)-> str:
                    
 #print(extraer_iniciales("")) 
 
+#-----------------------1.2-----------------------------
 def definir_iniciales_nombre(heroe:dict):
     retorno = True
     
-    if (type(heroe) == dict):
+    if (type(heroe) == dict ): #and type(heroe) == heroe["nombre"] NO PUEDO VALIDAR EL NOMBRE
         heroe["iniciales"] = extraer_iniciales(heroe["nombre"])
-        #print(heroe["iniciales"])
+        print(heroe["iniciales"])
         
     else:
         retorno = False
@@ -68,3 +70,18 @@ def definir_iniciales_nombre(heroe:dict):
 for heroe in lista_personajes:
     print(definir_iniciales_nombre(heroe))
     
+#--------------------------1.3-----------------------------
+def agregar_iniciales_nombre(lista_heroes:list):
+    retorno = True
+    if (type(lista_heroes) == list and len(lista_heroes) > 0):
+        for heroe in lista_heroes:
+            heroe = definir_iniciales_nombre(heroe)
+            #print(heroe)
+    else:
+        retorno = False
+        print("El origen de datos no contiene el formato correcto")
+
+    return retorno
+
+# for heroe in lista_personajes:
+#     print(agregar_iniciales_nombre(lista_personajes))
