@@ -1,7 +1,5 @@
 from data import lista_bzrp
 '''
-
-
 [
     
     {
@@ -13,6 +11,8 @@ from data import lista_bzrp
         'date': '2022-07-06 00:00:00'
     }
 ]
+
+
 1 - Tema mas visto
 2 - Tema menos visto
 3 - Tema mas largo
