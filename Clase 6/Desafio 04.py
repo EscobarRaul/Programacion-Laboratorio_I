@@ -65,4 +65,31 @@ def stark_imprimir_nombres_con_iniciales(lista_heroes:list):
         for heroe in lista_heroes:
             print("*{0}({1})".format(heroe["nombre"],heroe["iniciales"]))
         
-stark_imprimir_nombres_con_iniciales(lista_personajes)
+#stark_imprimir_nombres_con_iniciales(lista_personajes)
+
+#---------------------2.1--------------------------
+def generar_codigo_heroe(id_heroe:int,genero_heroe:str):
+    if type(id_heroe) == int and len(genero_heroe)>0:
+        id_heroe = str(id_heroe)
+        if genero_heroe == "M" or genero_heroe == "F" or genero_heroe == "NB":
+            mensaje = "{0}-{1}".format(genero_heroe,id_heroe.zfill(7))
+
+            return mensaje
+        else:
+            return "N/A"
+    else:
+        return "N/A"
+
+#print(generar_codigo_heroe(1,"M"))
+
+#---------------------2.2-------------------
+def agregar_codigo_heroe(heroe:dict,id_heroe:int):
+    if len(heroe) > 0 : 
+        heroe["codigo_heroe"] = generar_codigo_heroe(id_heroe)
+
+        return True
+    else:
+        return False
+
+print(agregar_codigo_heroe(lista_personajes[0],1))
+#print(lista_personajes[0])
