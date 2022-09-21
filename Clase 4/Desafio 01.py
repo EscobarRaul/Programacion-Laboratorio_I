@@ -34,22 +34,22 @@ def buscar_primer_masculino():
         return heroe_masculino
 
 #-----------A)NOMBRES MASCULINOS-------------
-def imprimir_nombre_masculino():
-    for heroe in lista_personajes :
+def imprimir_nombre_masculino(lista:list):
+    for heroe in lista:
         if heroe["genero"] == "M" :
             print("Nombres heroes masculinos: {0}".format(heroe["nombre"]))
 
 #-----------B) NOMBRES FEMENINOS-------------
-def imprimir_nombre_femenino():
-    for heroe in lista_personajes :
+def imprimir_nombre_femenino(lista:list):
+    for heroe in lista:
         if heroe["genero"] == "F" :
             print("Nombres heroes Femeninos: {0}".format(heroe["nombre"]))
 
 #------------C) HEROE MAS ALTO MASCULINO-----------
-def calcular_heroe_mas_alto_masculino():
+def calcular_heroe_mas_alto_masculino(lista:list):
     heroe_mas_alto = buscar_primer_masculino()
     heroe_mas_alto["altura"] = float(heroe_mas_alto["altura"])
-    for heroe in lista_personajes:
+    for heroe in lista:
         heroe["altura"] = float(heroe["altura"])
         if (heroe["genero"] == "M" and heroe["altura"] > heroe_mas_alto["altura"]):
             heroe_mas_alto = heroe
@@ -57,10 +57,10 @@ def calcular_heroe_mas_alto_masculino():
     print("Nombre: {0} | altura : {1} mts. ".format(heroe_mas_alto["nombre"], heroe_mas_alto["altura"]))
 
 #-----------------D)HEROE MAS ALTO FEMENINO----------------
-def calcular_heroe_mas_alto_femenino():
+def calcular_heroe_mas_alto_femenino(lista:list):
     heroe_mas_alto = buscar_primer_femenino()
     heroe_mas_alto["altura"] = float(heroe_mas_alto["altura"])
-    for heroe in lista_personajes:
+    for heroe in lista:
         heroe["altura"] = float(heroe["altura"])
         if (heroe["genero"] == "F" and heroe["altura"] > heroe_mas_alto["altura"]):
             heroe_mas_alto = heroe
@@ -68,10 +68,10 @@ def calcular_heroe_mas_alto_femenino():
     print("Nombre: {0} | altura: {1} mts. ".format(heroe_mas_alto["nombre"], heroe_mas_alto["altura"]))
 
 #--------------E) HEROE MAS BAJO MASCULINO----------------
-def calcular_heroe_mas_bajo_masculino():
+def calcular_heroe_mas_bajo_masculino(lista:list):
     heroe_mas_bajo = buscar_primer_masculino()
     heroe_mas_bajo["altura"] = float(heroe_mas_bajo["altura"])
-    for heroe in lista_personajes:
+    for heroe in lista:
         heroe["altura"] = float(heroe["altura"])
         if (heroe["genero"] == "M" and heroe["altura"] < heroe_mas_bajo["altura"]):
             heroe_mas_bajo = heroe
@@ -79,10 +79,10 @@ def calcular_heroe_mas_bajo_masculino():
     print("Nombre: {0} | altura : {1} mts. ".format(heroe_mas_bajo["nombre"], heroe_mas_bajo["altura"]))
 
 #--------------F) HEROE MAS BAJO FEMENINO------------------
-def calcular_heroe_mas_bajo_femenino():
+def calcular_heroe_mas_bajo_femenino(lista:list):
     heroe_mas_bajo = buscar_primer_femenino()
     heroe_mas_bajo["altura"] = float(heroe_mas_bajo["altura"])
-    for heroe in lista_personajes:
+    for heroe in lista:
         heroe["altura"] = float(heroe["altura"])
         if (heroe["genero"] == "F" and heroe["altura"] < heroe_mas_bajo["altura"]):
             heroe_mas_bajo = heroe
@@ -90,10 +90,10 @@ def calcular_heroe_mas_bajo_femenino():
     print("Nombre: {0} | altura: {1} mts. ".format(heroe_mas_bajo["nombre"], heroe_mas_bajo["altura"]))
 
 #--------------G)ALTURA PROMEDIO MASCULINO-----------------
-def calcular_promedio_altura_masculino():
+def calcular_promedio_altura_masculino(lista:list):
     acumulador_altura_masculino = 0
     contador_altura_masculino = 0
-    for heroe in lista_personajes:
+    for heroe in lista:
         if heroe["genero"] == "M":
             heroe["altura"] = float(heroe["altura"])
             acumulador_altura_masculino += heroe["altura"]
@@ -102,10 +102,10 @@ def calcular_promedio_altura_masculino():
     print("Promedio de altura M: {0:.2f} cm.".format(acumulador_altura_masculino/contador_altura_masculino))
 
 #-------------H) ALTURA PROMEDIO FEMENINO -------------------
-def calcular_promedio_altura_femenino():
+def calcular_promedio_altura_femenino(lista:list):
     acumulador_altura_femenino = 0
     contador_altura_femenino = 0
-    for heroe in lista_personajes:
+    for heroe in lista:
         if heroe["genero"] == "F":
             heroe["altura"] = float(heroe["altura"])
             acumulador_altura_femenino += heroe["altura"]
@@ -115,9 +115,9 @@ def calcular_promedio_altura_femenino():
 
 
 #------------J) CANTIDAD DE TIPOS DE COLOR DE OJOS ---------------
-def cantidad_tipos_color_ojos():
+def cantidad_tipos_color_ojos(lista:list):
     dict_ojos = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         color = heroe["color_ojos"]
         if color not in dict_ojos:
             dict_ojos[color]= 1
@@ -128,9 +128,9 @@ def cantidad_tipos_color_ojos():
     
 
 #------------K) CANTIDAD DE TIPOS DE COLOR DE PELO ------------------
-def cantidad_tipos_color_pelo():
+def cantidad_tipos_color_pelo(lista:list):
     dict_pelo = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         color = heroe["color_pelo"]
         if color not in dict_pelo:
             dict_pelo[color]= 1
@@ -141,9 +141,9 @@ def cantidad_tipos_color_pelo():
 
 
 #--------------L) CANTIDAD DE TIPOS DE INTELIGENCIA -----------
-def cantidad_tipos_inteligencia():
+def cantidad_tipos_inteligencia(lista:list):
     dict_inteligencia = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         tipo = heroe["inteligencia"]
         if tipo not in dict_inteligencia:
             if tipo == "":
@@ -160,9 +160,9 @@ def cantidad_tipos_inteligencia():
         print("Tipo: {0} | Cantidad: {1}".format(tipo, dict_inteligencia[tipo]))
 
 #---------------M) LISTA COLOR DE OJOS CON HEROE--------------
-def listar_heroes_color_ojos():
+def listar_heroes_color_ojos(lista:list):
     dict_ojos_nombres = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         color = heroe["color_ojos"]
         if color not in dict_ojos_nombres.keys():
             nombres = []
@@ -176,9 +176,9 @@ def listar_heroes_color_ojos():
         print("Color de ojos: {0} - Heroe: {1}".format(color, mensaje))
 
 #----------------N) LISTA COLOR DE PELO CON SU HEREO ----------------
-def listar_heroes_color_pelo():
+def listar_heroes_color_pelo(lista:list):
     dict_pelo_nombres = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         color = heroe["color_pelo"]
         if color not in dict_pelo_nombres.keys():
             nombres = []
@@ -192,9 +192,9 @@ def listar_heroes_color_pelo():
         print("Color de pelo: {0} - Heroes: {1}".format(color, mensaje))
 
 #-------------O) LISTA SEGUN TIPO DE INTELIGENCIA---------------
-def listar_heroes_tipo_inteligencia():
+def listar_heroes_tipo_inteligencia(lista:list):
     dict_int_nombres = {}
-    for heroe in lista_personajes:
+    for heroe in lista:
         tipo = heroe["inteligencia"]
         if tipo not in dict_int_nombres.keys():
             nombres = []
@@ -209,38 +209,38 @@ def listar_heroes_tipo_inteligencia():
 
 #------------------------MENU-------------------------   
 while True:
-  respuesta = input("1) Nombre de heroes masculinos:\n2)Nombre de heroes femeninos:\n3)Heroe masculino mas alto:\n"
+  respuesta = input("\n1) Nombre de heroes masculinos:\n2)Nombre de heroes femeninos:\n3)Heroe masculino mas alto:\n"
                     "4)Heroe femenino mas alto:\n5)Heroe masculino mas bajo:\n6)Heroe femenino mas bajo:\n"
                     "7)Promedio de altura masculino:\n8) Promedio de altura femenino:\n9) Cantidad de tipos de color de ojos:\n"
                     "10)Cantidad de tipos de color de pelo:\n11)Cantidad de tipos de inteligencia:\n12)Heroes segun su color de ojos:\n"
                     "13)Heroes segun su color de pelo:\n14)Heroes segun su tipo de inteligencia:\n15) Salir.\n")
   if(respuesta == "1"):
-    imprimir_nombre_masculino()
+    imprimir_nombre_masculino(lista_personajes)
   elif(respuesta == "2"):
-    imprimir_nombre_femenino()
+    imprimir_nombre_femenino(lista_personajes)
   elif(respuesta == "3"):
-    calcular_heroe_mas_alto_masculino()
+    calcular_heroe_mas_alto_masculino(lista_personajes)
   elif(respuesta == "4"):
-    calcular_heroe_mas_alto_femenino()
+    calcular_heroe_mas_alto_femenino(lista_personajes)
   elif(respuesta == "5"):
-    calcular_heroe_mas_bajo_masculino()
+    calcular_heroe_mas_bajo_masculino(lista_personajes)
   elif(respuesta == "6"):
-    calcular_heroe_mas_bajo_femenino()
+    calcular_heroe_mas_bajo_femenino(lista_personajes)
   elif(respuesta == "7"):
-    calcular_promedio_altura_masculino()
+    calcular_promedio_altura_masculino(lista_personajes)
   elif(respuesta == "8"):
-    calcular_promedio_altura_femenino()
+    calcular_promedio_altura_femenino(lista_personajes)
   elif(respuesta == "9"):
-    cantidad_tipos_color_ojos()
+    cantidad_tipos_color_ojos(lista_personajes)
   elif(respuesta == "10"):
-    cantidad_tipos_color_pelo()
+    cantidad_tipos_color_pelo(lista_personajes)
   elif(respuesta == "11"):
-    cantidad_tipos_inteligencia()
+    cantidad_tipos_inteligencia(lista_personajes)
   elif(respuesta == "12"):
-    listar_heroes_color_ojos()
+    listar_heroes_color_ojos(lista_personajes)
   elif(respuesta == "13"):
-    listar_heroes_color_pelo()
+    listar_heroes_color_pelo(lista_personajes)
   elif(respuesta == "14"):
-    listar_heroes_tipo_inteligencia()
+    listar_heroes_tipo_inteligencia(lista_personajes)
   elif(respuesta == "15"):
     break
