@@ -72,7 +72,7 @@ def generar_codigo_heroe(id_heroe:int,genero_heroe:str):
     if type(id_heroe) == int and len(genero_heroe)>0:
         id_heroe = str(id_heroe)
         if genero_heroe == "M" or genero_heroe == "F" or genero_heroe == "NB":
-            mensaje = "{0}-{1}".format(genero_heroe,id_heroe.zfill(7))
+            mensaje = "{0}-{1}".format(genero_heroe,id_heroe.zfill(8))
 
             return mensaje
         else:
@@ -84,12 +84,22 @@ def generar_codigo_heroe(id_heroe:int,genero_heroe:str):
 
 #---------------------2.2-------------------
 def agregar_codigo_heroe(heroe:dict,id_heroe:int):
-    if len(heroe) > 0 : 
-        heroe["codigo_heroe"] = generar_codigo_heroe(id_heroe)
+    if len(heroe) > 0 and len(generar_codigo_heroe(id_heroe,heroe["genero"])) == 10: 
+        heroe["codigo_heroe"] = generar_codigo_heroe(id_heroe,heroe["genero"])
 
         return True
     else:
         return False
 
-print(agregar_codigo_heroe(lista_personajes[0],1))
-#print(lista_personajes[0])
+# print(agregar_codigo_heroe(lista_personajes[10],10))
+# print(lista_personajes[10])
+
+#-------------------2.3-------------------
+def stark_generar_codigos_heroes(lista_heroes:list):
+
+    for heroe in lista_heroes:
+        heroe = agregar_codigo_heroe(heroe,)
+
+
+
+stark_generar_codigos_heroes(lista_personajes)
