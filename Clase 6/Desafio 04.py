@@ -91,15 +91,45 @@ def agregar_codigo_heroe(heroe:dict,id_heroe:int):
     else:
         return False
 
-# print(agregar_codigo_heroe(lista_personajes[10],10))
-# print(lista_personajes[10])
+# print(agregar_codigo_heroe(lista_personajes[1],1))
+# print(lista_personajes[1])
 
 #-------------------2.3-------------------
 def stark_generar_codigos_heroes(lista_heroes:list):
+    if len(lista_heroes) > 0:
+        contador = 0
+        for heroe in lista_heroes:
+            if type(heroe) == dict and "genero" in heroe:
+                id_heroe = lista_heroes.index(heroe)+1
+                agregar_codigo_heroe(heroe,id_heroe)
+                flag = True
+                contador += 1
+            else:
+                flag = False
 
-    for heroe in lista_heroes:
-        heroe = agregar_codigo_heroe(heroe,)
+    if flag == True:
+        print("Se asignaron {0} codigos\n"
+            "* El código del primer héroe es: {1}\n"
+            "* El código del último héroe es: {2}".format(contador,lista_heroes[0]["codigo_heroe"],lista_heroes[-1]["codigo_heroe"]))    
+    else:
+        print("El origen de datos no contiene el formato correcto")
 
+#stark_generar_codigos_heroes(lista_personajes)
 
+#----------------------3.1---------------------
+def sanitizar_entero(numero_str:str):
+    numero_str = numero_str.strip()
+   
+    if numero_str.isnumeric():
+        numero_str = int(numero_str)
+        return numero_str
+    elif numero_str.isalnum():
+        return -1
+    elif int(numero_str) < 0:
+        return -2
+    else:
+        return -3
 
-stark_generar_codigos_heroes(lista_personajes)
+#print(sanitizar_entero("-4kj"))
+
+#--------------------3.2------------------
