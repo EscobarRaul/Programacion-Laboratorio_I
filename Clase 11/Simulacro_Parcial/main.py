@@ -10,7 +10,7 @@
 import func
 
 def menu():
-    lista_heroes = func.cargar_json("C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/Simulacro_Parcial/data_stark (1).json")
+    lista_heroes = func.cargar_json("C:/Users/german.rosada/Desktop/Raul/Programacion_I/Programacion-Laboratorio_I/Clase 11/Simulacro_Parcial/data_stark (1).json")
     while(True):
         print("\n----------------MENU-----------------\n"
               "1- Listar los primeros N heroes.\n2- Ordenar y Listar héroes por altura\n"
@@ -26,9 +26,11 @@ def menu():
             else:
                 print("Opcion no valida Reingrese su numero:")    
         elif respuesta == "2":
-            orden = input("De que manera quiere ordenar ")
+            orden = input("De que manera quiere ordenar (asc o desc):")
+            func.mostrar(func.ordenar_lista(lista_heroes,"altura",orden))
         elif respuesta == "3":
-            pass
+            orden = input("De que manera quiere ordenar (asc o desc):")
+            func.mostrar(func.ordenar_lista(lista_heroes,"fuerza",orden))
         elif respuesta == "4":
             pass
         elif respuesta == "5":

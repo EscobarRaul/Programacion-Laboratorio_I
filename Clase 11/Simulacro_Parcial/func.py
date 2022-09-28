@@ -24,7 +24,7 @@ def validar_dato_ingresado(texto_usuario:str)-> int:
 
 def mostrar(lista:list):
     for elemento in lista:
-        print("Nombre: {0}||Identidad: {1}".format(elemento["nombre"],elemento["identidad"]))
+        print("Nombre: {0}| Altura: {1}| Peso: {2}| Fuerza: {3}".format(elemento["nombre"],elemento["altura"],elemento["peso"],elemento["fuerza"]))
         
 
 def buscar_min_max(lista:list,key:str,orden:str):
@@ -36,4 +36,11 @@ def buscar_min_max(lista:list,key:str,orden:str):
             i_min_max
             
     return i_min_max
-        
+
+def ordenar_lista(lista:list,key:str,orden:str):
+    lista_ordenada = lista.copy()
+    for i in range(len(lista_ordenada)):
+        index_min_max = buscar_min_max(lista_ordenada[i:],key,orden)+i
+        lista_ordenada[i],lista_ordenada[index_min_max] = lista_ordenada[index_min_max],lista_ordenada[i]
+
+    return lista_ordenada
