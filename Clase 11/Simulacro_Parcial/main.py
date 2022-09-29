@@ -8,9 +8,11 @@
 """
 
 import func
+import re
 
 def menu():
-    lista_heroes = func.cargar_json("C:/Users/german.rosada/Desktop/Raul/Programacion_I/Programacion-Laboratorio_I/Clase 11/Simulacro_Parcial/data_stark (1).json")
+    lista_heroes = func.cargar_json("C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/Simulacro_Parcial/data_stark (1).json")
+    lista_a_guardar = []
     while(True):
         print("\n----------------MENU-----------------\n"
               "1- Listar los primeros N heroes.\n2- Ordenar y Listar héroes por altura\n"
@@ -18,28 +20,61 @@ def menu():
               "5- Buscar y Listar héroes por inteligencia\n6- Exportar a CSV la lista de héroes ordenada\n"
               "7- Salir")
         
-        respuesta = input("\nIngrese la opción: \n") #func.validar_dato_ingresado("\nIngrese la opción: \n")#
-        if respuesta == "1":
-            top = int(input("Los primeros cuantos heroes desea mostrar?: \n"))
-            if top <= len(lista_heroes):
-                func.mostrar(lista_heroes[:top])
+        while True:
+            respuesta = input("\nIngrese la opción: \n") #func.validar_dato_ingresado("\nIngrese la opción: \n")#
+            if func.validar_dato_ingresado(respuesta,"^[1-7]{1}$"):
+                break
             else:
-                print("Opcion no valida Reingrese su numero:")    
+                print("Error ingrese un numero de las opciones.")
+            
+        if respuesta == "1":
+            while True:
+                top = input("Los primeros cuantos heroes desea mostrar?: \n")
+                if func.validar_dato_ingresado(top,"^[0-9]{1,2}$"):
+                    top = int(top)
+                    lista_heroes = func.mostrar(lista_heroes[:top])
+                    lista_a_guardar = lista_heroes.copy()
+                    break
+                else:
+                    print("Opcion no valida Reingrese su numero:\n")    
+                            
         elif respuesta == "2":
-            orden = input("De que manera quiere ordenar (asc o desc):")
-            func.mostrar(func.ordenar_lista(lista_heroes,"altura",orden))
+            while True:
+                orden = input("De que manera quiere ordenar (asc o desc):").lower()
+                if re.match("asc|desc",orden):
+                    lista_ordenada = func.mostrar(func.ordenar_lista(lista_heroes,"altura",orden))
+                    lista_a_guardar = lista_ordenada.copy()
+                    break
+                else:
+                    print("Reingrese alguna de las dos opciones.\n")
+            
         elif respuesta == "3":
-            orden = input("De que manera quiere ordenar (asc o desc):")
-            func.mostrar(func.ordenar_lista(lista_heroes,"fuerza",orden))
+            while True:
+                orden = input("De que manera quiere ordenar (asc o desc):").lower()
+                if re.match("asc|desc",orden):
+                    lista_ordenada = func.mostrar(func.ordenar_lista(lista_heroes,"fuerza",orden))
+                    lista_a_guardar = lista_ordenada.copy()
+                    break
+                else:
+                    print("Reingrese alguna de las dos opciones.\n")
+            
         elif respuesta == "4":
-            dato_a_promediar = input("Ingrese que desea promediar ´altura´ | ´peso´ | ´fuerza´")
+            dato_a_promediar = input("Ingrese que desea promediar altura | peso | fuerza")
             promedio = func.calcular_promedio(lista_heroes,dato_a_promediar)
-            print(promedio)
+            
+            mayor_menor_heroe = input("desea mostrar los heroes que sean mayor o menor al promedio (mayor|menor)")
+            func.imprimir_mayor_menor_promedio(lista_heroes, dato_a_promediar, mayor_menor_heroe,promedio)
+            
         elif respuesta == "5":
-            res_inteligencia = input("Que tipo de inteligencia desea buscar: Good(go), Average(av) o High(hi):\n")
-            func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
+            while True:
+                res_inteligencia = input("Que tipo de inteligencia desea buscar: Good(go), Average(av) o High(hi):\n")
+                if re.match("go|av|hi",res_inteligencia):
+                    func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
+                    break
+                else:
+                    print("Reingrese alguna de las dos opciones.\n")
         elif respuesta == "6":
-            pass
+            func.exportar_csv(lista_a_guardar, "C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/archivo.csv")
         elif respuesta == "7":
             break        
         

@@ -16,21 +16,25 @@ def cargar_json(path:str):
 
 #print(cargar_json("C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/Simulacro_Parcial/data_stark (1).json"))
 
-def validar_dato_ingresado(texto_usuario:str)-> int:
-    dato_ingresado = input(texto_usuario)
-    dato_validado = re.match("^[1-7]{1}$", dato_ingresado)
-    return int(dato_validado)
+def validar_dato_ingresado(texto_usuario:str,patron:str)-> bool:
+    if re.match(patron, texto_usuario):
+        return True
+    else:
+        return False
     
 
 def mostrar(lista:list):
+    lista_salida = []
     for elemento in lista:
-        print("Nombre: {0}| Altura: {1}| Peso: {2}| Fuerza: {3}".format(elemento["nombre"],elemento["altura"],elemento["peso"],elemento["fuerza"]))
-        
+        print("Nombre: {0} | Altura: {1} | Peso: {2} | Fuerza: {3}".format(elemento["nombre"],elemento["altura"],elemento["peso"],elemento["fuerza"]))
+        lista_salida.append(elemento)   
+            
+    return lista_salida
 
 def buscar_min_max(lista:list,key:str,orden:str):
     i_min_max = 0
     for i in range(len(lista)):
-        if(orden == "desc" and lista[i][key] < lista[i_min_max][key]) or (orden == "asc" and lista[i][key] > lista[i_min_max][key]):
+        if(orden == "desc" and lista[i][key] > lista[i_min_max][key]) or (orden == "asc" and lista[i][key] < lista[i_min_max][key]):
             i_min_max = i
             
     return i_min_max
@@ -79,12 +83,19 @@ def calcular_promedio(lista:list,dato:str)->str:
     promedio = dividir(sumar_dato_heroe(lista, dato), len(lista))
 
     promedio = round(promedio,2)
+    print("El promedio es: {0}".format(promedio))
     return promedio
 
-def imprimir_mayor_menor_promedio(lista:list,dato:str,tipo:str):
-    promedio = calcular_promedio(lista,dato)
-    if promedio == "menor":
-        pass
+def imprimir_mayor_menor_promedio(lista:list,dato:str,tipo:str,promedio:float):
+    lista_mayor_menor = []
+    for elemento in lista:
+        if tipo == "mayor" and promedio < elemento[dato]:
+            lista_mayor_menor.append(elemento)
+        elif tipo == "menor" and promedio > elemento[dato]:
+            lista_mayor_menor.append(elemento)
+        
+        return lista_mayor_menor
+
 
 #----------------------5------------------------
 def buscar_heroe_inteligencia(lista:list,tipo:str):
@@ -99,4 +110,9 @@ def buscar_heroe_inteligencia(lista:list,tipo:str):
 
 #--------------6------------------
 def exportar_csv(lista:list,path:str):
-    pass
+    with open(path,"w") as file:
+        for elemento in lista:
+            file.write("Nombre: {0}, Identidad: {1}, Altura: {2}, Peso: {3}, Fuerza:{4}, Inteligencia: {5}\n"
+                                                        .format(elemento["nombre"],elemento["identidad"],elemento["altura"],
+                                                        elemento["peso"],elemento["fuerza"],elemento["inteligencia"]))
+            
