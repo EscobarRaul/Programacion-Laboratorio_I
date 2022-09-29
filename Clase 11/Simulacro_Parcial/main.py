@@ -32,9 +32,12 @@ def menu():
             orden = input("De que manera quiere ordenar (asc o desc):")
             func.mostrar(func.ordenar_lista(lista_heroes,"fuerza",orden))
         elif respuesta == "4":
-            pass
+            dato_a_promediar = input("Ingrese que desea promediar ´altura´ | ´peso´ | ´fuerza´")
+            promedio = func.calcular_promedio(lista_heroes,dato_a_promediar)
+            print(promedio)
         elif respuesta == "5":
-            pass
+            res_inteligencia = input("Que tipo de inteligencia desea buscar: Good(go), Average(av) o High(hi):\n")
+            func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
         elif respuesta == "6":
             pass
         elif respuesta == "7":
