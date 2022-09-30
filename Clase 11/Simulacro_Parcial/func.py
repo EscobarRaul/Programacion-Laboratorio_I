@@ -22,7 +22,7 @@ def validar_dato_ingresado(texto_usuario:str,patron:str)-> bool:
     else:
         return False
     
-
+#------------------1-----------------------
 def mostrar(lista:list):
     lista_salida = []
     for elemento in lista:
@@ -31,6 +31,7 @@ def mostrar(lista:list):
             
     return lista_salida
 
+#----------------------2 y 3---------------------------
 def buscar_min_max(lista:list,key:str,orden:str):
     i_min_max = 0
     for i in range(len(lista)):
@@ -86,7 +87,7 @@ def calcular_promedio(lista:list,dato:str)->str:
     print("El promedio es: {0}".format(promedio))
     return promedio
 
-def imprimir_mayor_menor_promedio(lista:list,dato:str,tipo:str,promedio:float):
+def calcular_mayor_menor_promedio(lista:list,dato:str,tipo:str,promedio:float):
     lista_mayor_menor = []
     for elemento in lista:
         if tipo == "mayor" and promedio < elemento[dato]:
@@ -94,7 +95,7 @@ def imprimir_mayor_menor_promedio(lista:list,dato:str,tipo:str,promedio:float):
         elif tipo == "menor" and promedio > elemento[dato]:
             lista_mayor_menor.append(elemento)
         
-        return lista_mayor_menor
+    return lista_mayor_menor
 
 
 #----------------------5------------------------

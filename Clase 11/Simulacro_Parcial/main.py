@@ -59,23 +59,39 @@ def menu():
                     print("Reingrese alguna de las dos opciones.\n")
             
         elif respuesta == "4":
-            dato_a_promediar = input("Ingrese que desea promediar altura | peso | fuerza")
-            promedio = func.calcular_promedio(lista_heroes,dato_a_promediar)
-            
-            mayor_menor_heroe = input("desea mostrar los heroes que sean mayor o menor al promedio (mayor|menor)")
-            func.imprimir_mayor_menor_promedio(lista_heroes, dato_a_promediar, mayor_menor_heroe,promedio)
+            while True:
+                dato_a_promediar = input("Ingrese que desea promediar altura | peso | fuerza:\n").lower()
+                if re.match("altura|peso|fuerza", dato_a_promediar):
+                    promedio = func.calcular_promedio(lista_heroes,dato_a_promediar)
+                    break
+                else:
+                    print("ERROR!")
+                    
+            while True:        
+                mayor_menor_heroe = input("desea mostrar los heroes que sean mayor o menor al promedio:\n")
+                if re.match("mayor|menor", mayor_menor_heroe):
+                    lista_promediada = func.calcular_mayor_menor_promedio(lista_heroes, dato_a_promediar, mayor_menor_heroe,promedio)
+                    func.mostrar(lista_promediada)
+                    lista_a_guardar = lista_promediada.copy()
+                    break
+                else:
+                    print("ERROR!")
             
         elif respuesta == "5":
             while True:
-                res_inteligencia = input("Que tipo de inteligencia desea buscar: Good(go), Average(av) o High(hi):\n")
-                if re.match("go|av|hi",res_inteligencia):
+                res_inteligencia = input("Que tipo de inteligencia desea buscar: Good, Average o High:\n").lower()
+                if re.match("good|average|high",res_inteligencia):
                     func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
                     break
                 else:
                     print("Reingrese alguna de las dos opciones.\n")
         elif respuesta == "6":
-            func.exportar_csv(lista_a_guardar, "C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/archivo.csv")
+            if len(lista_a_guardar) != 0:
+                func.exportar_csv(lista_a_guardar, "C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/archivo.csv")
+            else:
+                print("No hay una lista generada, ingrese opcion de 1-4")
         elif respuesta == "7":
+            print("Fin del Programa")
             break        
         
 menu()
