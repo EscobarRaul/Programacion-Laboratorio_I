@@ -31,15 +31,42 @@ def menu():
         respuesta = input("Ingresa una opción:\n")
         
         if respuesta == "1":
-            func.mostrar(lista_pokemones)
+            while True:            
+                cantidad = int(input("Los ultimos cuantos pokemones desea listar?\n"))
+                if func.validar_dato_ingresado(cantidad,"^[0-9]{1,2}$"):
+                    lista_poke = func.listar_pokemones(lista_pokemones,cantidad)
+                    func.mostrar(lista_poke)
+                    break
+                else:
+                    print("ERROR")
+            
         elif respuesta == "2":
             pass
         elif respuesta == "3":
             pass
         elif respuesta == "4":
-            pass
+            key_a_promediar = ""
+            mayor_menor = ""
+            while not re.match("^(evoluciones|fortaleza|debilidad|tipo)$", key_a_promediar):
+                key_a_promediar = input("Ingrese key a promediar:\n"
+                                        "Evoluciones, Fortaleza, Debilidad, Tipo: ").lower()    
+            promedio = func.calcular_promedio(lista_pokemones,key_a_promediar)
+            while not re.match("^(mayor|menor)$", mayor_menor):
+                mayor_menor = input("Desea mostrar los pokemones que sean mayor o menor al promedio? ").lower()
+                lista_promediada = func.calcular_mayor_menor_promedio(lista_pokemones, key_a_promediar, mayor_menor, promedio)
+                
+                func.mostrar(lista_promediada)
+            
         elif respuesta == "5":
-            pass
+            patron = ""
+            while not re.match("^(veneno|hielo|fuego|electrico|agua|acero|psiquico|lucha|"
+                            "fantasma|planta|volador|electrico)$", patron):
+                patron = input("ingrese el tipo:\n"
+                            "veneno, hielo, fuego, electrico, agua, acero, psiquico, lucha, "
+                            "fantasma, planta, volador, electrico.\n").lower()
+                
+                func.buscar(lista_pokemones,patron)
+                 
         elif respuesta == "6":
             pass
         elif respuesta == "7":

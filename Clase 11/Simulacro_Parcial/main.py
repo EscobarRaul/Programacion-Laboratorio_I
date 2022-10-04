@@ -78,13 +78,11 @@ def menu():
                     print("ERROR!")
             
         elif respuesta == "5":
-            while True:
+            inteligencia = ""
+            while not re.match("good|average|high",inteligencia):
                 res_inteligencia = input("Que tipo de inteligencia desea buscar: Good, Average o High:\n").lower()
-                if re.match("good|average|high",res_inteligencia):
-                    func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
-                    break
-                else:
-                    print("Reingrese alguna de las dos opciones.\n")
+                func.buscar_heroe_inteligencia(lista_heroes,res_inteligencia)
+               
         elif respuesta == "6":
             if len(lista_a_guardar) != 0:
                 func.exportar_csv(lista_a_guardar, "C:/Users/raule/OneDrive/Escritorio/raul UTN/Programacion-Laboratorio_I/Clase 11/archivo.csv")
