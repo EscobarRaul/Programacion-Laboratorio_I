@@ -42,8 +42,8 @@ def buscar_minimo(lista:list,key:str):
 
 def ordenar(lista:list,key:str):
     convertir_datos(lista)
-    lista_copia = lista.copy()
     lista_ordenada = []
+    lista_copia = lista.copy()
     while(len(lista_copia) > 0):
         minimo = buscar_minimo(lista_copia, key)
         lista_ordenada.append(lista_copia.pop(minimo))
@@ -66,12 +66,9 @@ def mostrar_personaje_mas_alto_genero(lista:list,genero:str):
     for elemento in lista:
         if elemento["height"] > personaje_alto["height"]:
             personaje_alto = elemento
-        
-    return personaje_alto
-    
-        
-        
 
+    return personaje_alto  
+        
 #-----------------1---------------------------
 # def buscar_max_min(lista:list,key:str,orden:str):
 #     convertir_datos(lista)

@@ -22,8 +22,9 @@ def starwars_app():
                 print("Error ingrese un numero de las opciones")
         if(respuesta=="1"):
             #orden = input("De que manera desea ordenar la lista:\n Asc o Desc").lower()
-            lista_ordenada = funciones.ordenar(lista_personajes, "height")
-            funciones.mostrar(lista_ordenada)
+            lista_personajes.sort(key = lambda elemento : elemento["height"],reverse = True)
+            #lista_ordenada = funciones.ordenar(lista_personajes, "height")
+            funciones.mostrar(lista_personajes)
             #print("1 - Listar los personajes ordenados por altura\n")
         elif(respuesta=="2"):
             genero = input("Ingrese el genero del mas alto: \n female o male")
@@ -31,8 +32,9 @@ def starwars_app():
             funciones.mostrar(personaje_alto_genero)
             #print("2 - Mostrar el personaje mas alto de cada genero\n")
         elif(respuesta=="3"):
-            lista_ordenada = funciones.ordenar(lista_personajes, "mass")
-            funciones.mostrar(lista_ordenada)
+            lista_personajes.sort(key = lambda elemento : elemento["mass"],reverse = True)
+            #lista_ordenada = funciones.ordenar(lista_personajes, "mass")
+            funciones.mostrar(lista_personajes)
             #print("3 - Ordenar los personajes por peso\n")
         elif(respuesta=="4"):
             personaje = ""
