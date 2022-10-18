@@ -4,13 +4,13 @@ import random
 
 def crear(x,y,ancho,alto):
     # Leer una imagen
-    imagen_dona = pygame.image.load("Pygame/CLASE_PYGAME_INTRO/00.png")
-    imagen_dona = pygame.transform.scale(imagen_dona,(ancho,alto))
-    rect_dona = imagen_dona.get_rect()
+    enemigo = pygame.image.load("Pygame/CLASE_PYGAME_INTRO/enemigo.png")
+    enemigo = pygame.transform.scale(enemigo,(ancho,alto))
+    rect_dona = enemigo.get_rect()
     rect_dona.x = x
     rect_dona.y = y
     dict_dona = {}
-    dict_dona["surface"] = imagen_dona
+    dict_dona["surface"] = enemigo
     dict_dona["rect"] = rect_dona
     dict_dona["visible"] = True
     dict_dona["speed"] = random.randrange (10,20,1)
@@ -21,20 +21,16 @@ def update(lista_donas):
         rect_dona = dona["rect"]
         rect_dona.y = rect_dona.y + dona["speed"]
 
-
 def actualizar_pantalla(lista_donas,personaje,ventana_ppal):
     for dona in lista_donas:
         if(personaje["rect"].colliderect(dona["rect"])):
-            personaje["score"] = personaje["score"] + 100
+            personaje["score"] = personaje["score"] - 100
             restar_dona(dona)
-        
+
         if(dona["rect"].y > 880):
             restar_dona(dona)
-        ventana_ppal.blit(dona["surface"],dona["rect"])
 
-    font = pygame.font.SysFont("Arial Narrow", 50)
-    text = font.render("SCORE: {0}".format(personaje["score"]), True, (255, 0, 0))
-    ventana_ppal.blit(text,(0,0))
+        ventana_ppal.blit(dona["surface"],dona["rect"])
 
 def crear_lista_donas(cantidad):
     lista_donas = []
