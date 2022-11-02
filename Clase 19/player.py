@@ -26,6 +26,7 @@ class Player:
         self.is_jump = False
 
 
+
     def control(self,action):
 
         if(action == "WALK_R"):
@@ -42,13 +43,11 @@ class Player:
             self.animation = self.jump_r
             self.frame = 0
             self.is_jump = True
-
         elif(action == "JUMP_L"):
             self.move_y = self.jump
             self.animation = self.jump_l
             self.frame = 0
             self.is_jump = True
-
         elif(action == "STAY"):
             self.animation = self.stay
             self.move_x = 0

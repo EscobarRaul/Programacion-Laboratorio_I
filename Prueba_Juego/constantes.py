@@ -1,0 +1,5 @@
+import pygame
+
+ANCHO_VENTANA = 850
+ALTO_VENTANA = 480
+FPS = 30

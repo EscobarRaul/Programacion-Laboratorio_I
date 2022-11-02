@@ -1,5 +1,6 @@
 import pygame
-
+    
+    
 class Auxiliar:
     @staticmethod
     def getSurfaceFromSpriteSheet(path,columnas,filas,flip=False, step = 1):
@@ -17,3 +18,4 @@ class Auxiliar:
                     surface_fotograma = pygame.transform.flip(surface_fotograma,True,False)
                 lista.append(surface_fotograma)
         return lista
+    

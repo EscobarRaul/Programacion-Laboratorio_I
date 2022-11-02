@@ -54,38 +54,19 @@ class Enemigo:
             self.animation = self.walk_l
             self.frame = 0
         
-        elif(action == "JUMP"):
-            if self.is_jump:
-                if self.impulso >= -10: # -10 es el limite inferior del salto
-                    if self.impulso < 0: # menor que 0 significa que va en bajada el salto
-                        self.move_y += (self.impulso**2)*0.5 # (**2) elevado a la 2 divido 2 (0.5)
-                    else:
-                        self.move_y -= (self.impulso**2)*0.5 # aca estaria de subida por que se le debe disminuir la Y
-                    self.impulso -= 1 # se hace esto para que el salto llegue a -10 por eso se hace afuera del if
-                else: # impulso salto no sea mayor igual a 10, termina el salto
-                    self.is_jump = False
-                    self.impulso = 10
-            else:
-                if self.move_y > self.speed_walk:#ir hacia arriba
-                    self.move_y -= self.speed_walk
-                if self.move_y < self.speed_walk:#ir hacia abajo
-                    self.move_y += self.speed_walk
-                if (action == "JUMP"):
-                    self.is_jump=True
-        
-        # elif(action == "JUMP_R"):
-        #     self.move_y = self.jump
-        #     self.move_x = self.speed_walk
-        #     self.animation = self.jump_r
-        #     self.frame = 0
-        #     self.is_jump = True
+        elif(action == "JUMP_R"):
+            self.move_y = -self.jump
+            self.move_x = self.speed_walk
+            self.animation = self.jump_r
+            self.frame = 0
+            self.is_jump = True
             
-        # elif(action == "JUMP_L"):
-        #     self.move_y = - self.jump
-        #     self.move_x = self.speed_walk
-        #     self.animation = self.jump_l
-        #     self.frame = 0
-        #     self.is_jump = True
+        elif(action == "JUMP_L"):
+            self.move_y =  self.jump
+            self.move_x = self.speed_walk
+            self.animation = self.jump_l
+            self.frame = 0
+            self.is_jump = True
             
         elif(action == "STAY_R"):
             self.animation = self.stay_r
