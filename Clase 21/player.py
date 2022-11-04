@@ -1,16 +1,15 @@
-
 import pygame
 from constantes import *
 from auxiliar import Auxiliar
 
 class Player:
     def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height) -> None:
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/walk.png",15,1)[:12]
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/walk.png",15,1,True)[:12]
-        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/idle.png",16,1)
-        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/idle.png",16,1,True)
-        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/jump.png",33,1,False,2)
-        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 20/images/caracters/stink/jump.png",33,1,True,2)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/walk.png",15,1)[:12]
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/walk.png",15,1,True)[:12]
+        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/idle.png",16,1)
+        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/idle.png",16,1,True)
+        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/jump.png",33,1,False,2)
+        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet("Clase 21/images/caracters/stink/jump.png",33,1,True,2)
         self.frame = 0
         self.lives = 5
         self.score = 0
@@ -33,8 +32,7 @@ class Player:
         self.move_rate_ms = move_rate_ms
         self.y_start_jump = 0
         self.jump_height = jump_height
-        #seteamos el rect de los pies del pj
-        self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w /4,self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w /2, GROUND_RECT_H)
+        self.rect_ground_collition = pygame.Rect(self.rect.x + self.rect.w / 3, self.rect.y + self.rect.h - GROUND_RECT_H, self.rect.w / 3, GROUND_RECT_H)
         
 
     def walk(self,direction):
@@ -86,29 +84,33 @@ class Player:
             self.add_x(self.move_x)
             self.add_y(self.move_y)
 
-            
+
             if(self.is_on_platform(lista_plataformas) == False):
-                self.add_y(self.gravity)
+                 self.add_y(self.gravity)
             elif(self.is_jump): # SACAR
                 self.jump(False)
-                
+
     def is_on_platform(self,lista_plataformas):
         retorno = False
-        if(self.rect.y >= GROUND_LEVEL):
+        if(self.rect.y >= GROUND_LEVEL):     
             retorno = True
         else:
             for plataforma in lista_plataformas:
-                if self.rect_ground_collition.colliderect(plataforma.rect_ground_collition):
+                if(self.rect_ground_collition.colliderect(plataforma.rect_ground_collition)):
                     retorno = True
-                    break
+                    break   
         return retorno
-            
-    def add_x(self,delta_x): #agrego todos los movimientos de X
+
+
+                           
+    def add_x(self,delta_x):
         self.rect.x += delta_x
         self.rect_ground_collition.x += delta_x
-    def add_y(self,delta_y):#agrego todos los movimientos de Y
-        self.rect.y += delta_y
+
+    def add_y(self,delta_y):
+        self.rect.y += delta_y  
         self.rect_ground_collition.y += delta_y
+
 
     def do_animation(self,delta_ms):
         self.tiempo_transcurrido_animation += delta_ms
@@ -120,6 +122,7 @@ class Player:
                 self.frame = 0
 
 
+
     def update(self,delta_ms,lista_plataformas):
         self.do_movement(delta_ms,lista_plataformas)
         self.do_animation(delta_ms)
@@ -127,10 +130,11 @@ class Player:
     
     def draw(self,screen):
         if(DEBUG):
-            pygame.draw.rect(screen, RED, self.rect)
-            pygame.draw.rect(screen, GREEN, self.rect_ground_collition)
+            pygame.draw.rect(screen,RED,self.rect)
+            pygame.draw.rect(screen,GREEN,self.rect_ground_collition)
         self.image = self.animation[self.frame]
         screen.blit(self.image,self.rect)
+
         
 
     def events(self,delta_ms,keys):

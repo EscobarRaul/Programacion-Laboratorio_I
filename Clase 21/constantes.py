@@ -10,7 +10,6 @@ DEBUG = True
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
-PATH_IMAGE = "/CLASE_19_inicio_juego/images/"
 
-GROUND_RECT_H = 10
+GROUND_RECT_H = 5
 GROUND_LEVEL = 500

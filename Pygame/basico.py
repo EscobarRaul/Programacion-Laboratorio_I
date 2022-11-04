@@ -66,8 +66,8 @@ while flag_run:
     
     pygame.draw.circle(ventana_ppal, COLOR_NEGRO, (pos_circulo), 80)
     
-    pygame.draw.rect(ventana_ppal, COLOR_ROJO, rect_homero)# X, Y, ANCHO, ALTO
     ventana_ppal.blit(imagen_homero,rect_homero) #agregamos una imagen
+    pygame.draw.rect(ventana_ppal, COLOR_ROJO, rect_homero)# X, Y, ANCHO, ALTO
     
     ventana_ppal.blit(texto, (300,300)) # agregamos un texto en pantalla
     
