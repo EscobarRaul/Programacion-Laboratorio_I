@@ -8,3 +8,4 @@ DIRECTION_L = 0
 DIRECTION_R = 1
 GROUND_COLLIDE_H = 8 # Aprox Gravedad/2 + 1
 DEBUG = False
+
